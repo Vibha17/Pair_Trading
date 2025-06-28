@@ -109,3 +109,8 @@ Where,
 Ending Value= value of the asset at the end of the specified time period.
 Beginning Value= initial value of the asset at the beginning of the specified time period. n= The number of years in the time period.
 It is generally used to assess the historical performance of investments or to project future returns.
+
+## Contributors
+
+- [Vibha17](https://github.com/Vibha17) (Vibha Gupta)  
+- [aryanthepain](https://github.com/aryanthepain) (Aryan Gupta)
