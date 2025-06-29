@@ -20,10 +20,10 @@ A pair is selected based on their good statistical arbitrage opportunities over 
  Correlation describes the relation between variables ad is quantified by the correlation coefficient $\rho$, ranging from $-1$ to $+1$. The value of $+1$ indicates a perfect positive correlation between the two variables, $-1$ indicates a perfect negative correlation and $0$ means there is no correlation.
 
  ```math
- \mathrm{Correlation}(X,Y) = \rho = \frac{\operatorname{Cov}(X,Y)}{\sigma(X)\,\sigma(Y)}
+ \mathrm{Correlation}(X,Y) = \rho = \frac{\mathrm{Cov}(X,Y)}{\sigma(X)\,\sigma(Y)}
  ``` 
  Where,
- - $\operatorname{Cov}$ is covariance
+ - $\mathrm{Cov}$ is covariance
  - $\sigma$ is standard deviation
 ### Cointegration:
  Cointegration is a statistical property of two or more time-series variables which indicates if a linear combination of the variables is stationary. Parameters such as mean and variance do not change over time.
