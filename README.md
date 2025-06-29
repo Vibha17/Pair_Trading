@@ -16,13 +16,14 @@ Exit Strategy: The positions are closed when the spread narrows down again, or b
 
 A pair is selected based on their good statistical arbitrage opportunities over time. Correlation and cointegration are 2 important terms which we calculated to keep in check if the stocks follow the required relative price movements, i.e. in line with good statistical arbitrage.
 Correlation: Correlation describes the relation between variables ad is quantified by the correlation coefficient ρ, ranging from -1 to +1. The value of +1 indicates a perfect positive correlation between the two variables, -1 indicates a perfect negative correlation and 0 means there is no correlation.
-Correlation(X,Y) = ρ = COV(X,Y) / σ(X),σ(Y) Where,
+$\displaystyle \mathrm{Correlation}(X,Y) = \rho = \frac{\operatorname{Cov}(X,Y)}{\sigma(X)\,\sigma(Y)}$
+Where,
 COV is covariance
 σ is standard deviation
 Cointegration: Cointegration is a statistical property of two or more time-series variables which indicates if a linear combination of the variables is stationary.Parameters such as mean and variance do not change over time.
-Spread= Y - n*X
+$\displaystyle \mathrm{Spread} = Y - n\,X$
 Where,
-n is the hedge ratio (It is ideal when spread= 0)
+n is the hedge ratio (It is ideal when $\displaystyle \mathrm{Spread} = 0$)
   
 Libraries imported for downloading data for the past years is **yfinance**. This library provides extensive data regarding the stocks’ opening price, closing price, adjacent close price, low price and high price over the years for different stocks/tickers.
 ANALYSIS TOOLS FOR PAIR SELECTION:
@@ -40,7 +41,7 @@ We ran a regression analysis to find the hedge ratio (hr) between the two assets
 Kalman filter for dynamic hedge ratio calculation
 Kalman filtering, also known as linear quadratic estimation (LQE), is an algorithm that uses a series of measurements observed over time, containing statistical noise and other inaccuracies.
 It produces estimates of unknown variables that tend to be more accurate than those based on a single measurement alone, by estimating a joint probability distribution over the variables for each time-frame.
-Then, calculated the spread series as y - (x * hr).
+Then, calculated the spread series as $\displaystyle s_t = y_t - x_t \,\mathrm{hr}_t$.
 This is useful for computing the moving average if that's what we are interested in, or for smoothing out estimates of other quantities.
 
  Z-score is a measure of how many standard deviations the current spread is from its historical mean.
@@ -49,12 +50,13 @@ We then defined entry and exit Z-score thresholds for long and short positions. 
 **C. TRADING SIGNALS GENERATED AND POSITION SIZING**
 
 Trading logic
-1. Calculate the spread of each pair (Spread = Y – hedge ratio * X)
+1. Calculate the spread of each pair ($\displaystyle \mathrm{Spread} = Y - (\text{hedge ratio}) \times X$)
 2. Using Kalman Filter Regression Function to calculate hedge ratio
 3. Calculate z-score of ‘s’, using rolling mean and standard deviation for the time period of ‘half-life’ intervals. Save this as z-score
 4. Using half-life function to calculate the half-life
-5. Define upper entry Z-score = 2.0, lower entry Z-score = 2.0,
-exit Z-score = 0.0
+5. Define upper entry $\displaystyle Z_{\rm entry}^{\rm upper} = 2.0,\quad
+Z_{\rm entry}^{\rm lower} = -2.0,\quad
+Z_{\rm exit} = 0.0$
 6. When Z-score crosses upper entry Z-score, go SHORT; close
 the position with Z-score return exit Z-score
 7. When Z-score crosses lower entry Z-score, go LONG; close
@@ -73,8 +75,9 @@ ratio
 deviation for the time period of ‘half-life’ intervals. Save this as
 z-score
 4. Using half-life function to calculate half life
-5. Define upper entry Z-score = 1.25, lower entry Z-score =
--1.25, exit Z-score = -0.5
+5. Define $\displaystyle Z_{\rm entry}^{\rm upper} = 1.25,\quad
+Z_{\rm entry}^{\rm lower} = -1.25,\quad
+Z_{\rm exit} = -0.5$
 6. When Z-score crosses upper entry Z-score, go SHORT; close
 the position with Z-score return exit Z-score
 7. When Z-score crosses lower entry Z-score, go LONG; close
@@ -94,7 +97,7 @@ DataFrame is cleaned by removing the NaN values and then returned back.
 
 Sharpe Ratio:
 It help to assess the risk-adjusted return of an investment or portfolio.It is often used to compare different investments or portfolios and assess which one provides the best risk-adjusted return.
-Sharpe Ratio (SR) = (Rp - Rf) / σp
+$\displaystyle \mathrm{Sharpe Ratio (SR)} \;=\;\frac{R_p - R_f}{\sigma_p}$
 Where,
 Rp: The average return of the investment or portfolio.
 Rf: The risk-free rate of return.
@@ -104,7 +107,8 @@ A higher sharpe ratio is generally preferred, as it indicates a better risk-adju
 **CAGR:**
 
 It is used to measure the annual growth rate of an investment or asset over a specific period, assuming that the investment has been compounding.It gives you a standardized way to evaluate the return on an investment or asset, even when the growth or returns are not uniform over time
-CAGR = (Ending Value / Beginning Value) ^ (1 / n) - 1
+$\displaystyle \mathrm{CAGR} 
+  = \Bigl(\tfrac{\text{Ending Value}}{\text{Beginning Value}}\Bigr)^{\!1/n} \;-\; 1$
 Where,
 Ending Value= value of the asset at the end of the specified time period.
 Beginning Value= initial value of the asset at the beginning of the specified time period. n= The number of years in the time period.
